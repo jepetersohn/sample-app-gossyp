@@ -1,6 +1,9 @@
 language: ruby
 env:
   - RACK_ENV=staging DATABASE_URL=postgres://postgres@localhost/gossyp_staging
+before_install:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
 before_script:
   - createdb gossyp_staging -U postgres
   - bundle exec rake db:migrate
